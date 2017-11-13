@@ -7,6 +7,7 @@ import os
 def run():
     if len(sys.argv) < 3:
         print('usage: systemctl <command> <service>')
+        quit()
 
     command = sys.argv[1]
     service_file = sys.argv[2]
