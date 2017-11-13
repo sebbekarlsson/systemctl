@@ -18,6 +18,13 @@
 
 > If not a full path to the service file was given, it will look for it in  
 `/etc/systemd/system`
+
+> The directory `/etc/systemd/system` does not exist by default in MacOS.  
+> To create it, execute:
+
+    sudo mkdir -p /etc/systemd/system
+
+> Now you can place `.service` files there.
  
 ## Installation
 ### Dependencies:
