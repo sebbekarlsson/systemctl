@@ -3,7 +3,7 @@ Description=Test Service
 
 [Service]
 Type=forking
-ExecStart=/bin/bash -c 'cd /home; ls'
+ExecStart=/bin/bash -c 'sleep 10'
 
 [Install]
 WantedBy=multi-user.target

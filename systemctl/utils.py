@@ -46,5 +46,5 @@ def run_screen_with_command(screen_name='screen', command='ls'):
             stderr=subprocess.STDOUT)
     
     process.wait()
-    
+
     return process.stdout.read()
