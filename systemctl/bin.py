@@ -26,3 +26,6 @@ def run():
 
     if command == 'status':
         print(systemd_file.is_running())
+
+    if command == 'stop':
+        systemd_file.stop()

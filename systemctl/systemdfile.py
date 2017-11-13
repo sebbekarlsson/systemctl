@@ -1,5 +1,10 @@
 import ConfigParser, os
-from systemctl.utils import run_screen_with_command, is_screen_up
+from systemctl.utils import (
+    run_screen_with_command,
+    is_screen_up,
+    get_screens,
+    kill_screen
+)
 
 
 class SystemDFile(object):
@@ -19,3 +24,15 @@ class SystemDFile(object):
     def is_running(self):
         return is_screen_up(self.filename.replace('/', '_').\
                 replace('.service', ''))
+
+    def stop(self):
+        screens = get_screens()
+
+        for screen in screens:
+            if screen['name'] == self.filename.replace('/', '_').\
+                    replace('.service', ''):
+                
+                print('Trying to kill: {}...'.format(screen['name']))
+                return kill_screen(screen['id'])
+
+        return False
