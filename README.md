@@ -5,7 +5,11 @@
 > The usage is basically the same as with the original systemctl command:
 
     systemctl <command> <service>
-    
+
+> Available commands:
+* start
+* status 
+ 
 ## Installation
 > How to install:
 

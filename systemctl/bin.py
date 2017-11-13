@@ -20,5 +20,9 @@ def run():
         quit()
 
     systemd_file = SystemDFile(service_file)
+    
+    if command == 'start':
+        systemd_file.start()
 
-    systemd_file.start()
+    if command == 'status':
+        print(systemd_file.is_running())

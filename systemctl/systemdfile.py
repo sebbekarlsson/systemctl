@@ -1,5 +1,5 @@
 import ConfigParser, os
-from systemctl.utils import run_screen_with_command
+from systemctl.utils import run_screen_with_command, is_screen_up
 
 
 class SystemDFile(object):
@@ -15,3 +15,7 @@ class SystemDFile(object):
                 self.filename.replace('/', '_'),
                 self.start_command
                 )
+
+    def is_running(self):
+        return is_screen_up(self.filename.replace('/', '_').\
+                replace('.service', ''))

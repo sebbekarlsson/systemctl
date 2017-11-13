@@ -28,6 +28,18 @@ def get_screens():
 
     return screens
 
+def is_screen_up(name=None, id=None):
+    screens = get_screens()
+
+    for screen in screens:
+        if screen['name'] == name:
+            return True
+
+        if screen['id'] == id:
+            return True
+
+    return False
+
 def kill_screen(id):
     process = subprocess.Popen(['screen', '-X', '-S', id, 'kill'],
                            stdout=subprocess.PIPE,
