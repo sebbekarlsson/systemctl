@@ -13,7 +13,7 @@ setup(
     ],
     entry_points={
         "console_scripts": [
-            "systemctl = systemctl:bin"
+            "systemctl = systemctl.bin:run"
         ]
     }
 )

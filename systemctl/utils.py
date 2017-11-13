@@ -1,7 +1,7 @@
 import subprocess
 
 
-def get_detached_screens():
+def get_screens():
     screens = []
 
     process = subprocess.Popen(['screen', '-ls'],
@@ -20,7 +20,7 @@ def get_detached_screens():
         screens.append({
             'id': _screen[0].replace(' ', '').replace('	', '').\
                     replace('\r', '').replace('\n', ''),
-            '_id': _screen[1].replace(' ', ''),
+            'name': _screen[1].replace(' ', ''),
             'user': _screen[2].replace('\t', '').replace('(', '').\
                     replace(')', '').replace('detached', '').\
                     replace('attached', '')
@@ -37,22 +37,14 @@ def kill_screen(id):
     
     return process.stdout.read()
 
-def run_screen_with_command(command):
+def run_screen_with_command(screen_name='screen', command='ls'):
     screens = []
 
-    command = ['screen', '-d', '-m', '-S', 'myscreen', 'bash', '-c', "'{}'".format(command)] 
+    command = ['screen', '-d', '-m', '-S', screen_name, 'bash', '-c', command] 
     process = subprocess.Popen(command,
             stdout=subprocess.PIPE,
             stderr=subprocess.STDOUT)
     
     process.wait()
-    print(process.stderr, process.stdout.read())
-    #returncode = process.wait()
-    print ' '.join(command)
-
-    return process
-
-
-
-
-run_screen_with_command('sleep 10')
+    
+    return process.stdout.read()
