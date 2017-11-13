@@ -1,0 +1,9 @@
+[Unit]
+Description=Test Service
+
+[Service]
+Type=forking
+ExecStart=/bin/bash -c 'cd /home; ls'
+
+[Install]
+WantedBy=multi-user.target
