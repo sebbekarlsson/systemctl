@@ -11,6 +11,13 @@ def run():
     command = sys.argv[1]
     service_file = sys.argv[2]
 
+    if not os.path.isfile(service_file):
+        service_file = '/etc/systemd/system/' + service_file
+
+    if not os.path.isfile(service_file):
+        print('No such service')
+        quit()
+
     systemd_file = SystemDFile(service_file)
 
     systemd_file.start()
