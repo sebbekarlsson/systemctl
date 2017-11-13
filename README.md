@@ -2,6 +2,10 @@
 > The missing service file manager for `Macos` / `Mac` / `OSX`  
 > _Behind the curtains, it is using [screen](https://www.gnu.org/software/screen/manual/screen.html)_
 
+<p align="center">
+  <img src='pottery.gif' />
+</p>
+
 ## Usage
 > The usage is basically the same as with the original systemctl command:
 
