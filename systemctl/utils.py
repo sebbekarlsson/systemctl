@@ -4,9 +4,11 @@ import subprocess
 def get_screens():
     screens = []
 
-    process = subprocess.Popen(['screen', '-ls'],
-                           stdout=subprocess.PIPE,
-                           stderr=subprocess.STDOUT)
+    process = subprocess.Popen(
+        ['screen', '-ls'],
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT
+    )
 
     returncode = process.wait()
 
@@ -32,18 +34,17 @@ def is_screen_up(name=None, id=None):
     screens = get_screens()
 
     for screen in screens:
-        if screen['name'] == name:
-            return True
-
-        if screen['id'] == id:
+        if screen['name'] == name or screen['id'] == id:
             return True
 
     return False
 
 def kill_screen(id):
-    process = subprocess.Popen(['screen', '-X', '-S', id, 'kill'],
-                           stdout=subprocess.PIPE,
-                           stderr=subprocess.STDOUT)
+    process = subprocess.Popen(
+        ['screen', '-X', '-S', id, 'kill'],
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT
+    )
 
     returncode = process.wait()
     
@@ -53,9 +54,11 @@ def run_screen_with_command(screen_name='screen', command='ls'):
     screens = []
 
     command = ['screen', '-d', '-m', '-S', screen_name, 'bash', '-c', command] 
-    process = subprocess.Popen(command,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.STDOUT)
+    process = subprocess.Popen(
+        command,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT
+    )
     
     process.wait()
 
