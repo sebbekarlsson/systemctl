@@ -9,7 +9,10 @@
 
 > Available commands:
 * start
-* status 
+* status
+
+> If not a full path to the service file was given, it will look for it in  
+`/etc/systemd/system`
  
 ## Installation
 > How to install:
