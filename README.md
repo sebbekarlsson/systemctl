@@ -1,5 +1,6 @@
 # systemctl
-> The missing service file manager for `Macos` / `Mac` / `OSX`
+> The missing service file manager for `Macos` / `Mac` / `OSX`  
+> _Behind the curtains, it is using `screen`_
 
 ## Usage
 > The usage is basically the same as with the original systemctl command:
