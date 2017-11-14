@@ -4,9 +4,14 @@ import sys
 import os
 
 
+def show_usage():
+    print('usage: systemctl <command> <service>')
+
+
+
 def run():
     if len(sys.argv) < 3:
-        print('usage: systemctl <command> <service>')
+        show_usage()
         quit()
 
     command = sys.argv[1]
@@ -25,8 +30,11 @@ def run():
     if command == 'start':
         systemd_file.start()
 
-    if command == 'status':
+    elif command == 'status':
         print(systemd_file.is_running())
 
-    if command == 'stop':
+    elif command == 'stop':
         systemd_file.stop()
+    else:
+        print('Command not found')
+        show_usage()

@@ -4,7 +4,7 @@ import setuptools
 
 setup(
     name='systemctl',
-    version='',
+    version='1.1',
     install_requires=[
         ''
     ],
