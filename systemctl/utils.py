@@ -46,8 +46,16 @@ def kill_screen(id):
         stderr=subprocess.STDOUT
     )
 
-    returncode = process.wait()
-    
+    process.wait()
+
+    process = subprocess.Popen(
+        ['screen', '-X', '-S', id, 'quit'],
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT
+    )
+
+    process.wait()
+
     return process.stdout.read()
 
 def run_screen_with_command(screen_name='screen', command='ls'):
