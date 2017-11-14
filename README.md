@@ -1,6 +1,6 @@
 # systemctl
 > The missing service file manager for `Macos` / `Mac` / `OSX` or any other \*NIX system
-> that doesn't come with [systemd](https://en.wikipedia.org/wiki/Systemd).
+> that doesn't come with [systemd](https://en.wikipedia.org/wiki/Systemd).  
 > _Behind the curtains, it is using [screen](https://www.gnu.org/software/screen/manual/screen.html)_
 
 <p align="center">
