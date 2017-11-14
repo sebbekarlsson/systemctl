@@ -10,7 +10,8 @@ def run():
         quit()
 
     command = sys.argv[1]
-    service_file = sys.argv[2]
+    service_file = sys.argv[2] + '.service' if '.service' not in sys.argv[2]\
+            else sys.argv[2]
 
     if not os.path.isfile(service_file):
         service_file = '/etc/systemd/system/' + service_file
