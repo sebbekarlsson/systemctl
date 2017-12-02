@@ -31,7 +31,7 @@ def run():
         systemd_file.start()
 
     elif command == 'status':
-        print(systemd_file.is_running())
+        print('(running)' if systemd_file.is_running() else '(dead)')
 
     elif command == 'stop':
         systemd_file.stop()
