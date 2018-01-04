@@ -1,4 +1,3 @@
-from systemctl.utils import get_screens, run_screen_with_command, kill_screen
 from systemctl.systemdfile import SystemDFile
 import sys
 import os
@@ -8,7 +7,6 @@ def show_usage():
     print('usage: systemctl <command> <service>')
 
 
-
 def run():
     if len(sys.argv) < 3:
         show_usage()
@@ -16,7 +14,7 @@ def run():
 
     command = sys.argv[1]
     service_file = sys.argv[2] + '.service' if '.service' not in sys.argv[2]\
-            else sys.argv[2]
+        else sys.argv[2]
 
     if not os.path.isfile(service_file):
         service_file = '/etc/systemd/system/' + service_file
@@ -26,7 +24,7 @@ def run():
         quit()
 
     systemd_file = SystemDFile(service_file)
-    
+
     if command == 'start':
         systemd_file.start()
 
