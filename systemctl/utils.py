@@ -1,4 +1,5 @@
 import subprocess
+from simple_pipe.methods import pipe
 
 
 def get_screens():
@@ -10,7 +11,7 @@ def get_screens():
         stderr=subprocess.STDOUT
     )
 
-    returncode = process.wait()
+    process.wait()
 
     _screens = process.stdout.read().lower().split('\n')
     _screens = [screen.split('.') for screen in _screens if 'tached' in screen]
@@ -20,15 +21,30 @@ def get_screens():
             continue
 
         screens.append({
-            'id': _screen[0].replace(' ', '').replace('	', '').\
-                    replace('\r', '').replace('\n', ''),
+            'id': pipe(
+                _screen[0],
+                [
+                    lambda x: x.replace(' ', ''),
+                    lambda x: x.replace('	', ''),
+                    lambda x: x.replace('\r', ''),
+                    lambda x: x.replace('\n', '')
+                ]
+            ),
             'name': _screen[1].replace(' ', ''),
-            'user': _screen[2].replace('\t', '').replace('(', '').\
-                    replace(')', '').replace('detached', '').\
-                    replace('attached', '')
+            'user': pipe(
+                _screen[2],
+                [
+                    lambda x: x.replace('\t', ''),
+                    lambda x: x.replace('(', ''),
+                    lambda x: x.replace(')', ''),
+                    lambda x: x.replace('detached', ''),
+                    lambda x: x.replace('attached', '')
+                ]
+            )
         })
 
     return screens
+
 
 def is_screen_up(name=None, id=None):
     screens = get_screens()
@@ -38,6 +54,7 @@ def is_screen_up(name=None, id=None):
             return True
 
     return False
+
 
 def kill_screen(id):
     process = subprocess.Popen(
@@ -58,16 +75,15 @@ def kill_screen(id):
 
     return process.stdout.read()
 
-def run_screen_with_command(screen_name='screen', command='ls'):
-    screens = []
 
-    command = ['screen', '-d', '-m', '-S', screen_name, 'bash', '-c', command] 
+def run_screen_with_command(screen_name='screen', command='ls'):
+    command = ['screen', '-d', '-m', '-S', screen_name, 'bash', '-c', command]
     process = subprocess.Popen(
         command,
         stdout=subprocess.PIPE,
         stderr=subprocess.STDOUT
     )
-    
+
     process.wait()
 
     return process.stdout.read()
